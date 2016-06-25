@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txtv_logo"
+        android:id="@+id/tvLogo"
+        android:layout_marginTop="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/txtv_devby"
+        android:id="@+id/tvDev"
+        android:layout_below="@+id/tvLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="84dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txtv_nome"
+        android:id="@+id/tvNome"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txtv_email"
+        android:id="@+id/tv_email"
+        android:layout_below="@+id/tvNome"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/txtv_versao"
+        android:id="@+id/tvVersao"
+        android:layout_marginTop="74dp"
+        android:layout_below="@+id/tv_email"
+        android:layout_alignRight="@+id/tvLogo"
+        android:layout_alignEnd="@+id/tvLogo" />
+</RelativeLayout>

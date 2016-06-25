@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HealthTime</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="txtv_logo">Logo aqui</string>
+    <string name="txtv_devby">Desenvolvido por:</string>
+    <string name="txtv_nome">Isaac Silva</string>
+    <string name="txtv_email">yzaak.silva@gmail.com</string>
+    <string name="txtv_versao">Versão 1.0</string>
+</resources>
