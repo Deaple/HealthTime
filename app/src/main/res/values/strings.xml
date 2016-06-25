@@ -7,4 +7,8 @@
     <string name="txtv_nome">Isaac Silva</string>
     <string name="txtv_email">yzaak.silva@gmail.com</string>
     <string name="txtv_versao">Versão 1.0</string>
+    <string name="hor_rio_de_in_cio">Horário de Início</string>
+    <string name="n_de_lembretes">Nº de lembretes</string>
+    <string name="horario_inicial" />
+    <string name="horario_inicio">Horário Inicial</string>
 </resources>

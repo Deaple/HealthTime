@@ -2,8 +2,6 @@ package br.edu.ifba.mobile.healthtime;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,6 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroLembrete;
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroMedicamento;
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroRestricao;
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoInformacao;
 
 public class HealthActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -55,6 +58,7 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
 
         //declara uma instancia e um evento para o botao rosa
         //remover este botao
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +67,7 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
                         .setAction("Action", null).show();
             }
         });
-
+        */
 
         paginador.addOnPageChangeListener(this);
     }
@@ -131,6 +135,7 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
             return fragment;
         }
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -154,15 +159,29 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            Fragment frag = null;
+
+            if(position == 0)
+                frag = FragmentoCadastroMedicamento.getInstancia();
+            else if(position == 1)
+                frag = FragmentoCadastroLembrete.getInstancia();
+            else if(position  == 2)
+                frag = FragmentoCadastroRestricao.getInstancia();
+          /*  else if(position == 3)
+                frag = FragmentoListagemHorario.getInstancia();*/
+            else if (position == 4)
+                frag = FragmentoInformacao.getInstancia();
+            else
+            //remover esta linha
+                frag = PlaceholderFragment.newInstance(position + 1);
+
+            return frag;
         }
 
         @Override
         public int getCount() {
             // Show 4 total pages.
-            return 4;
+            return 5;
         }
 
         @Override
