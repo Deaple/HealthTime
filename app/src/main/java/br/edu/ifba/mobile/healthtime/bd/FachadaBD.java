@@ -16,9 +16,9 @@ import java.util.List;
 public class FachadaBD extends SQLiteOpenHelper{
 
     private static FachadaBD instancia = null;
-    private static String NOME_BANCO = "HorarioMedicamentos";
-    private static int VERSAO_BANCO = 1;
-    private static String COMANDO_CRIACAO_TABELA_MEDICAMENTOS =
+    private static final String NOME_BANCO = "HorarioMedicamentos";
+    private static final int VERSAO_BANCO = 1;
+    private static final String COMANDO_CRIACAO_TABELA_MEDICAMENTOS =
             "CREATE TABLE MEDICAMENTO(codigo INTEGER PRIMARY KEY AUTO INCREMENT, " +
                     "nomeMedicamento TEXT, nomeFarmacia TEXT, telFarmacia VARCHAR(14), nroLembretesDiarios INTEGER, " +
                     "quantidadeDiaria INTEGER, horarioInicial DATETIME, restricoes TEXT)";
@@ -35,6 +35,9 @@ public class FachadaBD extends SQLiteOpenHelper{
         return instancia;
     }
 
+    public static FachadaBD getInstancia(){
+        return instancia;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -42,7 +45,7 @@ public class FachadaBD extends SQLiteOpenHelper{
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int versaoAntiga, int versaoNova) {
 
     }
     //CRUD

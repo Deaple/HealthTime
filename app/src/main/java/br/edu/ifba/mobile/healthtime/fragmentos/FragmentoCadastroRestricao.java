@@ -40,4 +40,5 @@ public class FragmentoCadastroRestricao extends Fragment{
     private void preparar(){
         etRestricoes = (EditText) tela.findViewById(R.id.etRestricoes);
     }
+
 }

@@ -33,6 +33,7 @@ public class FragmentoCadastroMedicamento extends Fragment {
     public View onCreateView(LayoutInflater inflador,  ViewGroup vgrupo, Bundle bundle) {
         tela = inflador.inflate(R.layout.fragmento_cadastro_med,vgrupo,false);
         preparar();
+       // Toast.makeText(getContext(), "My frag tag is: "+getTag(), Toast.LENGTH_LONG).show();
         return tela;
     }
 

@@ -8,17 +8,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
+import br.edu.ifba.mobile.healthtime.bd.FachadaBD;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroLembrete;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroMedicamento;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroRestricao;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoInformacao;
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoListagemHorario;
 
 public class HealthActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -68,6 +66,8 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
             }
         });
         */
+        //cria o BD
+        FachadaBD.criarInstancia(this.getApplicationContext());
 
         paginador.addOnPageChangeListener(this);
     }
@@ -114,12 +114,12 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
 
     }
 
-
     /**
      * A placeholder fragment containing a simple view.
      */
 
 
+    /*
     public static class PlaceholderFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -145,7 +145,7 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
             return rootView;
         }
     }
-
+    */
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -160,22 +160,29 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
         @Override
         public Fragment getItem(int position) {
             Fragment frag = null;
+            switch(position){
+                case 0:
+                    frag = FragmentoInformacao.getInstancia();
 
-            if(position == 0)
-                frag = FragmentoCadastroMedicamento.getInstancia();
-            else if(position == 1)
-                frag = FragmentoCadastroLembrete.getInstancia();
-            else if(position  == 2)
-                frag = FragmentoCadastroRestricao.getInstancia();
-          /*  else if(position == 3)
-                frag = FragmentoListagemHorario.getInstancia();*/
-            else if (position == 4)
-                frag = FragmentoInformacao.getInstancia();
-            else
-            //remover esta linha
-                frag = PlaceholderFragment.newInstance(position + 1);
+                    break;
+                case 1:
+                    frag = FragmentoCadastroMedicamento.getInstancia();
+
+                    break;
+                case 2:
+                    frag = FragmentoCadastroLembrete.getInstancia();
+
+                    break;
+                case 3:
+                    frag = FragmentoCadastroRestricao.getInstancia();
+                    break;
+                case 4:
+                    frag = FragmentoListagemHorario.getInstancia();
+                    break;
+            }
 
             return frag;
+
         }
 
         @Override
@@ -188,15 +195,15 @@ public class HealthActivity extends AppCompatActivity implements ViewPager.OnPag
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Remedy";
+                    return "Sobre";
                 case 1:
-                    return "Remind";
+                    return "Cadastro Medicamento";
                 case 2:
-                    return "Restrict";
+                    return "Cadastro \n Lembrete";
                 case 3:
-                    return "Show";
+                    return "Cadastro Restrições";
                 case 4:
-                    return "About";
+                    return "Exibir";
             }
             return null;
         }

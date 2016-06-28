@@ -5,7 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.TimePicker;
 
 import br.edu.ifba.mobile.healthtime.R;
 
@@ -16,9 +17,10 @@ public class FragmentoCadastroLembrete  extends Fragment{
     private static FragmentoCadastroLembrete instancia = null;
     private View tela =  null;
 
-    private EditText etQuantidadeDiaria = null;
-    private EditText etHorarioInicial = null;
-
+    //private EditText etQuantidadeDiaria = null;
+    //private EditText etHorarioInicial = null;
+    private TimePicker horario = null;
+    private NumberPicker numero = null;
     public static  FragmentoCadastroLembrete getInstancia(){
         if(instancia == null){
             instancia = new FragmentoCadastroLembrete();
@@ -37,8 +39,13 @@ public class FragmentoCadastroLembrete  extends Fragment{
     }
 
     private void preparar(){
-        etQuantidadeDiaria = (EditText) tela.findViewById(R.id.etQuantidadeDiaria);
-        etHorarioInicial = (EditText) tela.findViewById(R.id.etHorarioInicial);
+        horario = (TimePicker) tela.findViewById(R.id.horario);
+        numero = (NumberPicker) tela.findViewById(R.id.quantidade);
+
+        numero.setMaxValue(10);
+        numero.setMinValue(1);
+        //etQuantidadeDiaria = (EditText) tela.findViewById(R.id.etQuantidadeDiaria);
+        //etHorarioInicial = (EditText) tela.findViewById(R.id.etHorarioInicial);
     }
 
 }

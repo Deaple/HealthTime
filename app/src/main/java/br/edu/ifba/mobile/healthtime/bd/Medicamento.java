@@ -13,7 +13,7 @@ public class Medicamento {
     private int quantidadeDiaria;
     private Calendar horarioInicial;
     private String restricoes;
-    private long codigo;
+    private long codigo = -1;
 
     public long getCodigo() {
         return codigo;
