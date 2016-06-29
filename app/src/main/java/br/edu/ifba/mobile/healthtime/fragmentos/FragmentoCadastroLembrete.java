@@ -44,6 +44,7 @@ public class FragmentoCadastroLembrete  extends Fragment{
         npNumero.setMinValue(1);
         npNumero.setMaxValue(24);
 
+
         //etQuantidadeDiaria = (EditText) tela.findViewById(R.id.etQuantidadeDiaria);
         //etHorarioInicial = (EditText) tela.findViewById(R.id.etHorarioInicial);
     }
