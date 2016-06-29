@@ -17,7 +17,7 @@ import br.edu.ifba.mobile.healthtime.bd.Medicamento;
  */
 public class ListagemMedicamentos extends AsyncTask<Void,Void,List<Medicamento>> {
     private Context contexto = null;
-    private ListView listaMedicamentos;
+    private ListView listaMedicamentos = null;
 
     public ListagemMedicamentos(Context contexto, ListView listaMedicamentos){
         this.contexto = contexto;
@@ -38,7 +38,8 @@ public class ListagemMedicamentos extends AsyncTask<Void,Void,List<Medicamento>>
             listaMedicamentos.setAdapter(null);
 
         } else {
-            ArrayAdapter<Medicamento> adaptador = new ArrayAdapter<Medicamento>(contexto,android.R.layout.simple_list_item_single_choice,medicamentos);
+            ArrayAdapter<Medicamento> adaptador = new ArrayAdapter<Medicamento>(contexto,
+                    android.R.layout.select_dialog_singlechoice,medicamentos);
             listaMedicamentos.setAdapter(adaptador);
         }
     }

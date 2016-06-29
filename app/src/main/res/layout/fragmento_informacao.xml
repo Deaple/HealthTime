@@ -46,8 +46,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/txtv_versao"
         android:id="@+id/tvVersao"
-        android:layout_marginTop="74dp"
-        android:layout_below="@+id/tv_email"
-        android:layout_alignRight="@+id/tvLogo"
-        android:layout_alignEnd="@+id/tvLogo" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp" />
 </RelativeLayout>

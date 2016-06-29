@@ -19,8 +19,8 @@ public class FragmentoCadastroLembrete  extends Fragment{
 
     //private EditText etQuantidadeDiaria = null;
     //private EditText etHorarioInicial = null;
-    private TimePicker horario = null;
-    private NumberPicker numero = null;
+    private TimePicker tpHorario = null;
+    private NumberPicker npNumero = null;
     public static  FragmentoCadastroLembrete getInstancia(){
         if(instancia == null){
             instancia = new FragmentoCadastroLembrete();
@@ -32,18 +32,18 @@ public class FragmentoCadastroLembrete  extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup vgrupo, Bundle bundle){
         tela = inflador.inflate(R.layout.fragmento_cad_lembrete, vgrupo, false);
-
         preparar();
 
         return tela;
     }
 
     private void preparar(){
-        horario = (TimePicker) tela.findViewById(R.id.horario);
-        numero = (NumberPicker) tela.findViewById(R.id.quantidade);
+        tpHorario = (TimePicker) tela.findViewById(R.id.horario);
+        npNumero = (NumberPicker) tela.findViewById(R.id.quantidade);
 
-        numero.setMaxValue(10);
-        numero.setMinValue(1);
+        npNumero.setMinValue(1);
+        npNumero.setMaxValue(24);
+
         //etQuantidadeDiaria = (EditText) tela.findViewById(R.id.etQuantidadeDiaria);
         //etHorarioInicial = (EditText) tela.findViewById(R.id.etHorarioInicial);
     }

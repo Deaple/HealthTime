@@ -11,7 +11,7 @@ public class Medicamento {
     private String telFarmacia;
     private int nroLembretesDiarios;
     private int quantidadeDiaria;
-    private Calendar horarioInicial;
+    private String horarioInicial;
     private String restricoes;
     private long codigo = -1;
 
@@ -23,11 +23,11 @@ public class Medicamento {
         this.codigo = codigo;
     }
 
-    public Calendar getHorarioInicial() {
+    public String getHorarioInicial() {
         return horarioInicial;
     }
 
-    public void setHorarioInicial(Calendar horarioInicial) {
+    public void setHorarioInicial(String horarioInicial) {
         this.horarioInicial = horarioInicial;
     }
 
@@ -79,16 +79,9 @@ public class Medicamento {
         this.nomeMedicamento = nomeMedicamento;
     }
 
-    public void Medicamento(){
-
-    }
-
-    public Calendar CalculaHorario(){
-        /*
-            calcula o horário de ingerir cada medicamento
-            com base na quantidade de doses diárias e horário inicial
-         */
-        return null;
+    @Override
+    public String toString(){
+        return "Medicamento: "+nomeMedicamento+" horário: "+Calendar.getInstance().getTime();
     }
 
 }

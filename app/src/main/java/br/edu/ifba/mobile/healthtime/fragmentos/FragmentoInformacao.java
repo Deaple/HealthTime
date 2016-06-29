@@ -30,5 +30,9 @@ public class FragmentoInformacao extends Fragment{
         tela = inflador.inflate(R.layout.fragmento_informacao, vgrupo, false);
         return tela;
     }
+
+    public String showMyTag(){
+        return this.getTag();
+    }
 }
 
