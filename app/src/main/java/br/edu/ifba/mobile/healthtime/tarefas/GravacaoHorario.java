@@ -5,18 +5,18 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import br.edu.ifba.mobile.healthtime.bd.FachadaBD;
-import br.edu.ifba.mobile.healthtime.bd.Medicamento;
+import br.edu.ifba.mobile.healthtime.bd.Horario;
 
 /**
- * Created by isaac on 28/06/16.
+ * Created by isaac on 07/07/16.
  */
-public class GravacaoMedicamento extends AsyncTask<Void,Void,String> {
+public class GravacaoHorario extends AsyncTask<Void,Void,String> {
     private Context contexto = null;
-    private Medicamento medicamento = null;
+    private Horario horario = null;
 
-    public GravacaoMedicamento(Context contexto, Medicamento medicamento){
+    public GravacaoHorario(Context contexto, Horario horario){
         this.contexto = contexto;
-        this.medicamento = medicamento;
+        this.horario = horario;
     }
 
 
@@ -25,14 +25,15 @@ public class GravacaoMedicamento extends AsyncTask<Void,Void,String> {
         String mensagem = "";
 
         long codigo = -1;
-        if(medicamento.getCodigo()==-1){
-            codigo = FachadaBD.getInstancia().inserirMedicamento(medicamento);
+
+        if(horario.getCodigo()==-1){
+            codigo = FachadaBD.getInstancia().inserirHorario(horario);
         } else {
-            codigo = FachadaBD.getInstancia().atualizarMedicamento(medicamento);
+            codigo = FachadaBD.getInstancia().atualizarHorario(horario);
         }
 
         if(codigo>0){
-            mensagem = "Medicamento gravado com sucesso!";
+            mensagem = "Horário gravado com sucesso!";
         } else {
             mensagem = "Erro de gravação!";
         }

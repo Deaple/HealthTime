@@ -11,4 +11,11 @@
     <string name="n_de_lembretes">Nº de lembretes</string>
     <string name="horario_inicial" />
     <string name="horario_inicio">Horário Inicial</string>
+    <string name="gravar">gravar</string>
+    <string name="restri_es">Restrições</string>
+    <string name="telefone_da_farm_cia">Telefone da farmácia</string>
+    <string name="informa_es_do_medicamento">Informações do medicamento</string>
+    <string name="nome_da_farm_cia">Nome da farmácia</string>
+    <string name="nome_do_medicamento">Nome do medicamento</string>
+    <string name="info_medicamento">Informações do Medicamento</string>
 </resources>

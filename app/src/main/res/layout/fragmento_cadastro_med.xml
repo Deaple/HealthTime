@@ -1,82 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:tag="cadmedicamento">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Informações do medicamento"
-            android:id="@+id/textView"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+        android:id="@+id/etNomeMedicamento"
+        android:hint="Nome do medicamento"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/etNomeMedicamento"
-            android:hint="Nome do medicamento"
-            android:layout_below="@+id/etNomeFarmacia"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center_horizontal"
-            android:allowUndo="false" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNomeFarmacia"
+        android:gravity="center_horizontal"
+        android:hint="Nome da Farmácia"
+        android:layout_below="@+id/etNomeMedicamento"
+        android:layout_centerHorizontal="true" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/etTelFarmacia"
-            android:hint="Telefone da farmácia"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center_horizontal" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etTelFarmacia"
+        android:hint="Telefone da Farmácia"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/etNomeFarmacia"
+        android:layout_centerHorizontal="true"
+        android:inputType="phone" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/etNomeFarmacia"
-            android:hint="Nome da farmácia"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gravar Medicamento"
+        android:id="@+id/btnGravarMed"
+        android:layout_below="@+id/etRestricoes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Nº de doses diárias:"
-            android:id="@+id/textView2"
-            android:layout_alignBottom="@+id/npQuantidadeDiaria"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_marginBottom="63dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etRestricoes"
+        android:hint="Restrições"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/etTelFarmacia"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="gravar"
-            android:id="@+id/btnGravarMed" />
-
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/npQuantidadeDiaria"
-            android:layout_below="@+id/etTelFarmacia"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignEnd="@+id/textView"
-            android:baselineAligned="true"
-            android:layout_gravity="right" />
-
-    </LinearLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/info_medicamento"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:inputType="phone" />
 </RelativeLayout>

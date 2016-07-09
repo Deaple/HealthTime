@@ -10,11 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import br.edu.ifba.mobile.healthtime.bd.FachadaBD;
-import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroLembrete;
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroHorario;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroMedicamento;
-import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoCadastroRestricao;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoInformacao;
 import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoListagemHorario;
+import br.edu.ifba.mobile.healthtime.fragmentos.FragmentoListagemMedicamento;
 
 public class HealthTimeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
 
@@ -56,13 +56,15 @@ public class HealthTimeActivity extends AppCompatActivity implements ViewPager.O
     @Override
     public void onPageSelected(int position) {
         //atualiza informacoes com pase na posicao/pagina
-        if(position == 4){
+        if(position == 1){
+            FragmentoCadastroMedicamento.getInstancia().exibirMedicamentoSelecionado();
+        } else if(position == 2){
+            FragmentoCadastroHorario.getInstancia().exibirHorarioSelecionado();
+        } else if(position == 3){
+            FragmentoListagemMedicamento.getInstancia().atualizar();
+        } else if(position == 4){
             FragmentoListagemHorario.getInstancia().atualizar();
         }
-        //editar
-        /*else if(position){
-            FragmentoListagemHorario.getInstancia().
-        }*/
     }
 
     @Override
@@ -93,11 +95,11 @@ public class HealthTimeActivity extends AppCompatActivity implements ViewPager.O
 
                     break;
                 case 2:
-                    frag = FragmentoCadastroLembrete.getInstancia();
+                    frag = FragmentoCadastroHorario.getInstancia();
 
                     break;
                 case 3:
-                    frag = FragmentoCadastroRestricao.getInstancia();
+                    frag = FragmentoListagemMedicamento.getInstancia();
                     break;
                 case 4:
                     frag = FragmentoListagemHorario.getInstancia();
@@ -120,13 +122,14 @@ public class HealthTimeActivity extends AppCompatActivity implements ViewPager.O
                 case 0:
                     return "Sobre";
                 case 1:
-                    return "Cadastro Medicamento";
+                    return "CAD. Medicamento";
                 case 2:
-                    return "Cadastro Lembrete";
+                    return "CAD. Horario";
                 case 3:
-                    return "Cadastro Restrições";
+                    return "Exibir Medicamentos";
                 case 4:
-                    return "Exibir";
+                    return "Exibir Horarios";
+
             }
             return null;
         }

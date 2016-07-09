@@ -24,8 +24,8 @@ public class RemocaoMedicamento extends AsyncTask<Void,Void,String>{
         String mensagem = "";
 
         if(medicamento.getCodigo()!=-1){
-            if (FachadaBD.getInstancia().remover(medicamento) == 0){
-                mensagem = "Falha ao remover medicamento!";
+            if (FachadaBD.getInstancia().removerMedicamento(medicamento) == 0){
+                mensagem = "Falha ao removerMedicamento medicamento!";
             } else {
                 mensagem = "Medicamento "+medicamento.getNomeMedicamento()+" foi removido com sucesso.";
                 medicamento.setCodigo(-1);

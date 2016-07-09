@@ -12,21 +12,21 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import br.edu.ifba.mobile.healthtime.R;
-import br.edu.ifba.mobile.healthtime.bd.Horario;
-import br.edu.ifba.mobile.healthtime.tarefas.ListagemHorarios;
-import br.edu.ifba.mobile.healthtime.tarefas.RemocaoHorario;
+import br.edu.ifba.mobile.healthtime.bd.Medicamento;
+import br.edu.ifba.mobile.healthtime.tarefas.ListagemMedicamentos;
+import br.edu.ifba.mobile.healthtime.tarefas.RemocaoMedicamento;
 
 /**
  * Created by isaac on 22/06/16.
  */
-public class FragmentoListagemHorario extends Fragment {
-    private static FragmentoListagemHorario instancia = null;
+public class FragmentoListagemMedicamento extends Fragment {
+    private static FragmentoListagemMedicamento instancia = null;
     private View tela = null;
     private ListView lista = null;
 
-    public static FragmentoListagemHorario getInstancia(){
+    public static FragmentoListagemMedicamento getInstancia(){
         if(instancia == null){
-            instancia = new FragmentoListagemHorario();
+            instancia = new FragmentoListagemMedicamento();
         }
 
         return  instancia;
@@ -34,20 +34,21 @@ public class FragmentoListagemHorario extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup vgrupo, Bundle bundle){
-        tela = inflador.inflate(R.layout.fragmento_lista_horarios, vgrupo, false);
+        tela = inflador.inflate(R.layout.fragmento_lista_medicamentos, vgrupo, false);
         preparar();
         return tela;
     }
 
     private void preparar(){
-        lista = (ListView) tela.findViewById(R.id.listaHorarios);
+        lista = (ListView) tela.findViewById(R.id.listaMedicamentos);
         lista.setClickable(true);
         lista.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
         this.setHasOptionsMenu(true);
     }
 
     public void atualizar(){
-        ListagemHorarios listagem = new ListagemHorarios(this.getContext(),lista);
+        ListagemMedicamentos listagem = new ListagemMedicamentos(this.getContext(),lista);
         listagem.execute();
     }
 
@@ -65,7 +66,7 @@ public class FragmentoListagemHorario extends Fragment {
         long id = item.getItemId();
         if(id!= AdapterView.INVALID_ROW_ID){
             if(id==R.id.acoes_menu){
-               RemocaoHorario remocao = new RemocaoHorario(this.getContext(),this.getHorarioSelecionado());
+                RemocaoMedicamento remocao = new RemocaoMedicamento(this.getContext(),this.getMedicamentoSelecionado());
                 remocao.execute();
                 atualizar();
             }
@@ -73,17 +74,15 @@ public class FragmentoListagemHorario extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public Horario getHorarioSelecionado(){
-        Horario horario = new Horario();
+    public Medicamento getMedicamentoSelecionado(){
+        Medicamento medicamento = new Medicamento();
         int pos = 0;
         if(lista!=null)
-         pos = lista.getCheckedItemPosition();
-
+            pos = lista.getCheckedItemPosition();
         if(pos!=ListView.INVALID_POSITION && lista!=null){
-            horario = (Horario)lista.getItemAtPosition(pos);
+            medicamento = (Medicamento)lista.getItemAtPosition(pos);
         }
-
-        return horario;
+        return medicamento;
     }
 
 }

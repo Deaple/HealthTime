@@ -1,7 +1,5 @@
 package br.edu.ifba.mobile.healthtime.bd;
 
-import java.util.Calendar;
-
 /**
  * Created by isaac on 25/06/16.
  */
@@ -9,9 +7,6 @@ public class Medicamento {
     private String nomeMedicamento;
     private String nomeFarmacia;
     private String telFarmacia;
-    private int nroLembretesDiarios;
-    private int quantidadeDiaria;
-    private String horarioInicial;
     private String restricoes;
     private long codigo = -1;
 
@@ -23,36 +18,12 @@ public class Medicamento {
         this.codigo = codigo;
     }
 
-    public String getHorarioInicial() {
-        return horarioInicial;
-    }
-
-    public void setHorarioInicial(String horarioInicial) {
-        this.horarioInicial = horarioInicial;
-    }
-
     public String getRestricoes() {
         return restricoes;
     }
 
     public void setRestricoes(String restricoes) {
         this.restricoes = restricoes;
-    }
-
-    public int getQuantidadeDiaria() {
-        return quantidadeDiaria;
-    }
-
-    public void setQuantidadeDiaria(int quantidadeDiaria) {
-        this.quantidadeDiaria = quantidadeDiaria;
-    }
-
-    public int getNroLembretesDiarios() {
-        return nroLembretesDiarios;
-    }
-
-    public void setNroLembretesDiarios(int nroLembretesDiarios) {
-        this.nroLembretesDiarios = nroLembretesDiarios;
     }
 
     public String getTelFarmacia() {
@@ -81,7 +52,8 @@ public class Medicamento {
 
     @Override
     public String toString(){
-        return "Medicamento: "+nomeMedicamento+" horário: "+Calendar.getInstance().getTime();
+        return "Medicamento: "+nomeMedicamento+"\nComprado em: "
+                +nomeFarmacia+"("+telFarmacia+")"
+                +"\nRestrições: "+restricoes;
     }
-
 }

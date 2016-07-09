@@ -18,9 +18,12 @@ public class FachadaBD extends SQLiteOpenHelper{
     private static final String NOME_BANCO = "HorarioMedicamentos";
     private static final int VERSAO_BANCO = 1;
     private static final String COMANDO_CRIACAO_TABELA_MEDICAMENTOS =
-            "CREATE TABLE MEDICAMENTO(codigo INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "nomeMedicamento TEXT, nomeFarmacia TEXT, telFarmacia VARCHAR(14), nroLembretesDiarios INTEGER, " +
-                    "quantidadeDiaria INTEGER, horarioInicial DATETIME, restricoes TEXT)";
+            "CREATE TABLE MEDICAMENTO(codigoMed INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "nomeMedicamento TEXT, nomeFarmacia TEXT, telFarmacia VARCHAR(14), restricoes TEXT)";
+
+    private static final String COMANDO_CRIACAO_TABELA_HORARIOS_DOSAGEM =
+            "CREATE TABLE HORARIOS(codHorario INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "horarioInicial TEXT, intervaloHorarios INTEGER, dosesDiarias INTEGER)";
 
     public FachadaBD(Context contexto){
         super(contexto,NOME_BANCO,null,VERSAO_BANCO);
@@ -41,6 +44,7 @@ public class FachadaBD extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(COMANDO_CRIACAO_TABELA_MEDICAMENTOS);
+        db.execSQL(COMANDO_CRIACAO_TABELA_HORARIOS_DOSAGEM);
     }
 
     @Override
@@ -48,19 +52,31 @@ public class FachadaBD extends SQLiteOpenHelper{
 
     }
     //CRUD
-    public long inserir(Medicamento medicamento){
+    public long inserirMedicamento(Medicamento medicamento){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valores = new ContentValues();
 
         valores.put("nomeMedicamento", medicamento.getNomeMedicamento());
         valores.put("nomeFarmacia", medicamento.getNomeFarmacia());
         valores.put("telFarmacia",medicamento.getTelFarmacia());
-        valores.put("nroLembretesDiarios", medicamento.getNroLembretesDiarios());
-        valores.put("quantidadeDiaria", medicamento.getQuantidadeDiaria());
-        valores.put("horarioInicial", medicamento.getHorarioInicial());
         valores.put("restricoes",medicamento.getRestricoes());
 
         long codigo = db.insert("MEDICAMENTO", null, valores);
+        return codigo;
+    }
+
+    public long inserirHorario(Horario horario){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues valores = new ContentValues();
+
+        valores.put("horarioInicial", horario.getHorarioInicial());
+        valores.put("intervaloHorarios", horario.getIntervaloHorarios());
+        valores.put("dosesDiarias", horario.getQuantidadeDiaria());
+
+        long codigo = db.insert("HORARIOS", null, valores);
+
         return codigo;
     }
 
@@ -68,8 +84,8 @@ public class FachadaBD extends SQLiteOpenHelper{
         List<Medicamento> medicamentos = new ArrayList<Medicamento>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selecao = "SELECT codigo, nomeMedicamento, nomeFarmacia,telFarmacia, nroLembretesDiarios," +
-                " quantidadeDiaria, horarioInicial, restricoes FROM MEDICAMENTO";
+        String selecao = "SELECT codigo, nomeMedicamento, nomeFarmacia,telFarmacia, " +
+                "restricoes FROM MEDICAMENTO";
 
         Cursor cursor = db.rawQuery(selecao,null);
 
@@ -82,9 +98,7 @@ public class FachadaBD extends SQLiteOpenHelper{
                 medicamento.setNomeMedicamento(cursor.getString(cursor.getColumnIndex("nomeMedicamento")));
                 medicamento.setNomeFarmacia(cursor.getString(cursor.getColumnIndex("nomeFarmacia")));
                 medicamento.setTelFarmacia(cursor.getString(cursor.getColumnIndex("telFarmacia")));
-                medicamento.setNroLembretesDiarios(cursor.getInt(cursor.getColumnIndex("nroLembretesDiarios")));
-                medicamento.setQuantidadeDiaria(cursor.getInt(cursor.getColumnIndex("quantidadeDiaria")));
-                medicamento.setHorarioInicial(cursor.getString(cursor.getColumnIndex("horarioInicial")));
+                medicamento.setRestricoes(cursor.getString(cursor.getColumnIndex("restricoes")));
 
                 medicamentos.add(medicamento);
                 temProximo = cursor.moveToNext();
@@ -94,16 +108,13 @@ public class FachadaBD extends SQLiteOpenHelper{
         return medicamentos;
     }
 
-    public long atualizar(Medicamento medicamento){
+    public long atualizarMedicamento(Medicamento medicamento){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valores = new ContentValues();
 
         valores.put("nomeMedicamento", medicamento.getNomeMedicamento());
         valores.put("nomeFarmacia", medicamento.getNomeFarmacia());
         valores.put("telFarmacia",medicamento.getTelFarmacia());
-        valores.put("nroLembretesDiarios", medicamento.getNroLembretesDiarios());
-        valores.put("quantidadeDiaria", medicamento.getQuantidadeDiaria());
-        valores.put("horarioInicial", medicamento.getHorarioInicial().toString());
         valores.put("restricoes",medicamento.getRestricoes());
 
         long codigo = db.update("MEDICAMENTO", valores, "codigo = "+medicamento.getCodigo(), null);
@@ -111,10 +122,60 @@ public class FachadaBD extends SQLiteOpenHelper{
         return codigo;
     }
 
-    public int remover(Medicamento medicamento){
+    public long atualizarHorario(Horario horario){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+
+        valores.put("horarioInicial",horario.getHorarioInicial());
+        valores.put("intervaloHorarios",horario.getIntervaloHorarios());
+        valores.put("dosesDiarias",horario.getQuantidadeDiaria());
+
+        long codigo = db.update("HORARIOS", valores, "codHorario = "+horario.getCodigo(), null);
+
+        return codigo;
+    }
+
+    public List<Horario> listaHorario(){
+        List<Horario> horarios = new ArrayList<Horario>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selecao = "SELECT codHorario, horarioInicial, intervaloHorarios, dosesDiarias " +
+                "FROM HORARIOS";
+
+        Cursor cursor = db.rawQuery(selecao,null);
+
+        if(cursor!=null){
+            boolean temProximo = cursor.moveToFirst();
+
+            while (temProximo){
+                Horario horario = new Horario();
+
+                horario.setCodigo(cursor.getLong(cursor.getColumnIndex("codHorario")));
+                horario.setHorarioInicial(cursor.getString(cursor.getColumnIndex("horarioInicial")));
+                horario.setIntervaloHorarios(cursor.getInt(cursor.getColumnIndex("intervaloHorarios")));
+                horario.setQuantidadeDiaria(cursor.getInt(cursor.getColumnIndex("dosesDiarias")));
+
+                horarios.add(horario);
+                temProximo = cursor.moveToNext();
+            }
+        }
+
+        return horarios;
+
+    }
+
+    public int removerMedicamento(Medicamento medicamento){
         SQLiteDatabase db = this.getWritableDatabase();
 
         int codigo = db.delete("MEDICAMENTO", "codigo = "+medicamento.getCodigo(), null);
+        return codigo;
+    }
+
+    public int removerHorario(Horario horario){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int codigo = db.delete("HORARIOS", "codHorario = "+horario.getCodigo(), null);
+
         return codigo;
     }
 }
